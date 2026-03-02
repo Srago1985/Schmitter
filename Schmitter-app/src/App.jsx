@@ -19,10 +19,22 @@ function App() {
         setUser(prev => ({...prev, avatar: url || prev.avatar}))
     }
 
+    const changeName = name => {
+        setUser(prev => ({...prev, name: name || prev.name}))
+    }
+
+    const increaseFollowers = () => {
+        setStats(prev => ({...prev, followers: prev.followers + 1}))
+    }
+
+    const decreaseFollowers = () => {
+        setStats(prev => ({...prev, followers: Math.max(0, prev.followers - 1)}))
+    }
+
     return (
         <div className={'app'}>
             <SchmitterContext value={{
-                    user, stats, changeAvatar
+                    user, stats, changeAvatar, changeName, increaseFollowers, decreaseFollowers
                 }}>
             
                 <Navigation />
