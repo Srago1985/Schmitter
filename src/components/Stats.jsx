@@ -1,23 +1,22 @@
 import Avatar from "./Avatar.jsx";
+import { changeStats } from "../features/stats/statsSlice.js";
 import { useSelector, useDispatch } from "react-redux";
-import { changeStats } from "../actions/statsAction";
-
 
 const Stats = () => {
     const { name } =useSelector((state) => state.user);
     const { followers, following } = useSelector((state) => state.stats);
     const dispatch = useDispatch();
     const increaseFollowers = () => {
-        dispatch(changeStats('followers', 1));
+        dispatch(changeStats({ statsType: 'followers', sum: 1 }));
     };
     const decreaseFollowers = () => {
-        dispatch(changeStats('followers', -1));
+        dispatch(changeStats({ statsType: 'followers', sum: -1 }));
     };
     const increaseFollowing = () => {
-        dispatch(changeStats('following', 1));
+        dispatch(changeStats({ statsType: 'following', sum: 1 }));
     };
     const decreaseFollowing = () => {
-        dispatch(changeStats('following', -1));
+        dispatch(changeStats({ statsType: 'following', sum: -1 }));
     };
     return (
         <div className={'user-stats'}>
